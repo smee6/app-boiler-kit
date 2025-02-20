@@ -1,10 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 
-type HomeScreenProps = BottomTabScreenProps<any, 'Home'>;
-
-const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
+const HomeScreen = () => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Home Screen</Text>

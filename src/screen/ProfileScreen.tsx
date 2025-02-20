@@ -1,10 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 
-type HomeScreenProps = BottomTabScreenProps<any, 'Profile'>;
-
-const ProfileScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
+const ProfileScreen = () => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>ProfileScreen</Text>
