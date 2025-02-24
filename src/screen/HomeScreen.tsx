@@ -6,6 +6,8 @@ import { useAtom } from "jotai";
 import { counterAtom } from "../store/atoms/counterAtom";
 import { useTranslation } from "react-i18next";
 
+import MessageBox from "../components/MessageBox";
+
 const HomeScreen = () => {
     const { t } = useTranslation();
     const [counter, setCounter] = useAtom(counterAtom);
@@ -15,6 +17,10 @@ const HomeScreen = () => {
             <Text variant="headlineLarge" style={styles.title}>
                 {t("homeScreen.title")}
             </Text>
+            <MessageBox
+                message="안녕하세요! 이것은 메시지 박스입니다."
+                type="info"
+            />
             <Text variant="titleMedium" style={styles.counterText}>
                 {t("homeScreen.counter")}: {counter}
             </Text>
