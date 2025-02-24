@@ -12,10 +12,10 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: 'ko',           // 기본 언어를 영어로 설정 (필요 시 'ko'로 변경)
-    fallbackLng: 'en',   // 해당 언어가 없을 경우 fallback
+    lng: 'ko',
+    fallbackLng: 'en',
     interpolation: {
-      escapeValue: false // React는 이미 XSS 보호를 제공합니다.
+      escapeValue: false 
     }
   });
 
