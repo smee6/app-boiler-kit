@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import HomeScreen from "./screen/HomeScreen";
 import ProfileScreen from "./screen/ProfileScreen";
+import './i18n';
 
 const Tab = createBottomTabNavigator();
 

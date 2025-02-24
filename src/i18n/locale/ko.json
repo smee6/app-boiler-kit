@@ -1,0 +1,12 @@
+{
+    "homeScreen": {
+        "title": "홈에 오신 것을 환영합니다",
+        "counter": "카운터",
+        "increment": "+",
+        "decrement": "-"
+    },
+    "profileScreen": {
+        "title": "프로필",
+        "description": "여기는 당신의 프로필 화면입니다."
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "homeScreen": {
+        "title": "Welcome to Home",
+        "counter": "Counter",
+        "increment": "+",
+        "decrement": "-"
+    },
+    "profileScreen": {
+        "title": "Profile",
+        "description": "This is your profile screen."
+    }
+}

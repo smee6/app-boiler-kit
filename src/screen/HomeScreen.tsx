@@ -1,10 +1,39 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+// src/screens/HomeScreen.tsx
+import React from "react";
+import { View, StyleSheet } from "react-native";
+import { Text, Button } from "react-native-paper";
+import { useAtom } from "jotai";
+import { counterAtom } from "../store/atoms/counterAtom";
+import { useTranslation } from "react-i18next";
 
 const HomeScreen = () => {
+    const { t } = useTranslation();
+    const [counter, setCounter] = useAtom(counterAtom);
+
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Home Screen</Text>
+            <Text variant="headlineLarge" style={styles.title}>
+                {t("homeScreen.title")}
+            </Text>
+            <Text variant="titleMedium" style={styles.counterText}>
+                {t("homeScreen.counter")}: {counter}
+            </Text>
+            <View style={styles.buttonContainer}>
+                <Button
+                    mode="contained"
+                    onPress={() => setCounter((c) => c - 1)}
+                    style={styles.button}
+                >
+                    {t("homeScreen.decrement")}
+                </Button>
+                <Button
+                    mode="contained"
+                    onPress={() => setCounter((c) => c + 1)}
+                    style={styles.button}
+                >
+                    {t("homeScreen.increment")}
+                </Button>
+            </View>
         </View>
     );
 };
@@ -14,11 +43,20 @@ export default HomeScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 16,
     },
     title: {
-        fontSize: 24,
-        fontWeight: 'bold',
+        marginBottom: 20,
+    },
+    counterText: {
+        marginBottom: 20,
+    },
+    buttonContainer: {
+        flexDirection: "row",
+    },
+    button: {
+        marginHorizontal: 10,
     },
 });
