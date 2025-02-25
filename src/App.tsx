@@ -1,6 +1,10 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { PaperProvider, MD3Colors, Icon } from "react-native-paper";
+import {
+    PaperProvider,
+    MD3Colors,
+    Icon
+} from "react-native-paper";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import HomeScreen from "./screen/HomeScreen";
@@ -9,6 +13,7 @@ import "./i18n";
 import Toast from "./components/Toast";
 import * as Notifications from "expo-notifications";
 import { useEffect } from "react";
+import { theme } from "./theme";
 
 Notifications.setNotificationHandler({
     handleNotification: async () => ({
@@ -29,9 +34,9 @@ export default function App() {
             }
         })();
     }, []);
-    
+
     return (
-        <PaperProvider>
+        <PaperProvider theme={theme}>
             <NavigationContainer>
                 <Tab.Navigator
                     screenOptions={({ route }) => ({
