@@ -6,10 +6,30 @@ import { NavigationContainer } from "@react-navigation/native";
 import HomeScreen from "./screen/HomeScreen";
 import ProfileScreen from "./screen/ProfileScreen";
 import "./i18n";
+import Toast from "./components/Toast";
+import * as Notifications from "expo-notifications";
+import { useEffect } from "react";
+
+Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+        shouldShowAlert: true,
+        shouldPlaySound: true,
+        shouldSetBadge: true,
+    }),
+});
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+    useEffect(() => {
+        (async () => {
+            const { status } = await Notifications.requestPermissionsAsync();
+            if (status !== "granted") {
+                alert("알림 권한이 필요합니다.");
+            }
+        })();
+    }, []);
+    
     return (
         <PaperProvider>
             <NavigationContainer>
@@ -39,6 +59,7 @@ export default function App() {
                     <Tab.Screen name="Profile" component={ProfileScreen} />
                 </Tab.Navigator>
             </NavigationContainer>
+            <Toast />
         </PaperProvider>
     );
 }

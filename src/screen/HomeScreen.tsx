@@ -5,6 +5,7 @@ import { Text, Button } from "react-native-paper";
 import { useAtom } from "jotai";
 import { counterAtom } from "../store/atoms/counterAtom";
 import { useTranslation } from "react-i18next";
+import { TEST_VALUE } from "../utils/constants";
 
 import MessageBox from "../components/MessageBox";
 
@@ -23,6 +24,7 @@ const HomeScreen = () => {
             />
             <Text variant="titleMedium" style={styles.counterText}>
                 {t("homeScreen.counter")}: {counter}
+                {TEST_VALUE} 는 상수입니다.
             </Text>
             <View style={styles.buttonContainer}>
                 <Button

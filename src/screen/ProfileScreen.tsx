@@ -1,19 +1,31 @@
 import React, { useState, useCallback } from "react";
 import { View, StyleSheet } from "react-native";
-import { Text } from "react-native-paper";
+import { Text, IconButton, Button } from "react-native-paper";
 import { useTranslation } from "react-i18next";
 import { useFocusEffect } from "@react-navigation/native";
 import { getRandomIsoCodes } from "../services/isoService";
+import { sendPushNotification } from "../services/notificationService";
+import { useAtom } from "jotai";
+import { toastAtom } from "../store/atoms/toastAtom";
 
 const ProfileScreen: React.FC = () => {
     const { t } = useTranslation();
-    const [isoCodes, setIsoCodes] = useState<string[]>([]);
+    const [isoCodes, setIsoCodes] = useState<string[]>(['KR', 'US', 'JP']);
+    const [, setToast] = useAtom(toastAtom);
 
     useFocusEffect(
         useCallback(() => {
             getRandomIsoCodes().then(setIsoCodes);
         }, [])
     );
+
+    const handlePushNotification = async () => {
+        await sendPushNotification("안녕!");
+    };
+
+    const handleShowToast = () => {
+        setToast("글로벌 토스트 메시지");
+    };
 
     return (
         <View style={styles.container}>
@@ -27,6 +39,21 @@ const ProfileScreen: React.FC = () => {
             <Text variant="bodyMedium" style={styles.subtitle}>
                 {t("description")}
             </Text>
+            {/* 푸시 알림 아이콘 */}
+            <IconButton
+                icon="bell"
+                size={28}
+                onPress={handlePushNotification}
+                style={styles.iconButton}
+            />
+            {/* 글로벌 토스트 버튼 */}
+            <Button
+                mode="contained"
+                onPress={handleShowToast}
+                style={styles.toastButton}
+            >
+                {t("showToast")}
+            </Button>
         </View>
     );
 };
@@ -48,5 +75,14 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: "#555",
     },
-    subtitle: {},
+    subtitle: {
+        marginBottom: 20,
+    },
+    iconButton: {
+        backgroundColor: "#e0e0e0",
+        marginBottom: 20,
+    },
+    toastButton: {
+        width: "80%",
+    },
 });
