@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text } from "react-native";
-import { Card } from "react-native-paper";
+import { Card , useTheme } from "react-native-paper";
 
 interface MessageBoxProps {
     message: string;
@@ -8,10 +8,13 @@ interface MessageBoxProps {
 }
 
 const MessageBox: React.FC<MessageBoxProps> = ({ message, type = "info" }) => {
+    const { colors } = useTheme();
     return (
-        <Card style={[styles.card, type === "error" && styles.errorCard]}>
+        <Card style={[styles.card]}>
             <Card.Content>
-                <Text style={styles.messageText}>{message}</Text>
+                <Text style={[styles.messageText]}>
+                    {message}
+                </Text>
             </Card.Content>
         </Card>
     );
@@ -22,14 +25,9 @@ const styles = StyleSheet.create({
         margin: 10,
         padding: 10,
         borderRadius: 8,
-        backgroundColor: "#fff",
-    },
-    errorCard: {
-        backgroundColor: "#f8d7da",
     },
     messageText: {
-        fontSize: 16,
-        color: "#333",
+        fontSize: 16
     },
 });
 

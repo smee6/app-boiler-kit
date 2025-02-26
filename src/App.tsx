@@ -1,10 +1,6 @@
-import React from "react";
-import { StyleSheet, View } from "react-native";
-import {
-    PaperProvider,
-    MD3Colors,
-    Icon
-} from "react-native-paper";
+import React, { useEffect } from "react";
+import { StyleSheet } from "react-native";
+import { PaperProvider, Icon } from "react-native-paper";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import HomeScreen from "./screen/HomeScreen";
@@ -12,14 +8,13 @@ import ProfileScreen from "./screen/ProfileScreen";
 import "./i18n";
 import Toast from "./components/Toast";
 import * as Notifications from "expo-notifications";
-import { useEffect } from "react";
 import { theme } from "./theme";
 
 Notifications.setNotificationHandler({
     handleNotification: async () => ({
         shouldShowAlert: true,
         shouldPlaySound: true,
-        shouldSetBadge: true
+        shouldSetBadge: true,
     }),
 });
 
@@ -41,7 +36,7 @@ export default function App() {
                 <Tab.Navigator
                     screenOptions={({ route }) => ({
                         headerShown: false,
-                        tabBarIcon: ({ focused, color, size }) => {
+                        tabBarIcon: ({ focused, size }) => {
                             let iconName = "";
                             if (route.name === "Home") {
                                 iconName = "camera";
@@ -51,13 +46,17 @@ export default function App() {
                             return (
                                 <Icon
                                     source={iconName}
-                                    color={focused ? MD3Colors.error50 : "gray"}
+                                    color={
+                                        focused
+                                            ? theme.colors.tabActive
+                                            : theme.colors.tabInactive
+                                    }
                                     size={size}
                                 />
                             );
                         },
-                        tabBarActiveTintColor: MD3Colors.error50,
-                        tabBarInactiveTintColor: "gray",
+                        tabBarActiveTintColor: theme.colors.tabActive,
+                        tabBarInactiveTintColor: theme.colors.tabInactive,
                     })}
                 >
                     <Tab.Screen name="Home" component={HomeScreen} />
