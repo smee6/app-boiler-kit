@@ -13,6 +13,8 @@ const ProfileScreen: React.FC = () => {
     const [isoCodes, setIsoCodes] = useState<string[]>(['KR', 'US', 'JP']);
     const [, setToast] = useAtom(toastAtom);
 
+    const toastMsg = t("title");
+    
     useFocusEffect(
         useCallback(() => {
             getRandomIsoCodes().then(setIsoCodes);
@@ -20,7 +22,7 @@ const ProfileScreen: React.FC = () => {
     );
 
     const handlePushNotification = async () => {
-        await sendPushNotification("안녕!");
+        await sendPushNotification(toastMsg);
     };
 
     const handleShowToast = () => {
