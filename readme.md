@@ -9,6 +9,7 @@ for 생산성
 
 
 ### 구성
+- react-native-paper (components docs 공홈 참고)
 - Navigation, Tab
 - multi language
 - toast
