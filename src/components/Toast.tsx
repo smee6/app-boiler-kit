@@ -41,17 +41,17 @@ const Toast = () => {
 const styles = StyleSheet.create({
     toastContainer: {
         position: "absolute",
-        bottom: 50,
+        bottom: 80,
         left: (width - 250) / 2,
         width: 250,
         backgroundColor: "#333",
-        padding: 10,
+        padding: 15,
         borderRadius: 8,
         alignItems: "center",
     },
     toastText: {
         color: "#fff",
-        fontSize: 14,
+        fontSize: 15,
     },
 });
 
