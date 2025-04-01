@@ -24,7 +24,17 @@ export const getRandomIsoCodes = async (): Promise<string[]> => {
     const selected = results.slice(0, 4).map((country :any) => country.isocode);
     return selected;
   } catch (error) {
-    console.error("Error fetching country list:", error);
+    if (axios.isAxiosError(error) && error.response) {
+      if (error.response.status === 404) {
+        console.error("Country list not found (404).");
+      } else if (error.response.status === 403) {
+        console.error("Access forbidden (403) when fetching country list.");
+      } else {
+        console.error(`Error fetching country list: ${error.response.status}`, error.response.data);
+      }
+    } else {
+      console.error("Error fetching country list:", error);
+    }
     return [];
   }
 };
