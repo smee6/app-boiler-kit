@@ -35,6 +35,6 @@ export const getRandomIsoCodes = async (): Promise<string[]> => {
     } else {
       console.error("Error fetching country list:", error);
     }
-    return [];
+    return ["KR", "JP", "CN", "US"];
   }
 };
